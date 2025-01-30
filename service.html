@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services - CRH Madagascar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="font-awesome/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style type="text/css">
+         /* Navbar for mobile */
+    .bottom-navbar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e40af;
+      z-index: 50;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .bottom-navbar a {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      color: white;
+      font-size: 24px;
+    }
+
+   /* .bottom-navbar a:hover {
+      background-color: #2563eb;
+    }*/
+
+    /* Hide desktop navbar on mobile */
+    @media (max-width: 768px) {
+      
+        .br{
+            display: none;
+        }
+      .bottom-navbar {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+    </style>
+    <style>
+
+#pied {
+  width: 100%;
+ }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: #1a202c;
+            z-index: -1;
+        }
+
+        #particles-js-2 {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            z-index: -1;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header img {
+            width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #38b2ac;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Styles pour le popup */
+        .popup {
+            position: fixed;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #2d3748;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .popup-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* Animation de survol des cartes avec scale et ligne en dessous */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: pulse 0.6s ease-out;
+        }
+
+        /* Ligne animée sous la carte */
+        .service-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #38b2ac;
+            transition: width 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            width: 100%;
+        }
+
+        /* Ligne animée entre les sections */
+        .line-animate {
+            height: 4px;
+            background: linear-gradient(90deg, #38b2ac, #a0aec0, #38b2ac);
+            background-size: 200% 100%;
+            animation: slide 3s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Ajustements spécifiques en mobile et tablette */
+        @media (max-width: 768px) {
+            /* Cache les liens de navigation */
+            .nav-links {
+                display: none;
+            }
+
+            /* Affiche le logo centré */
+            .header {
+                justify-content: center;
+            }
+
+            /* Enlève les effets AOS sur les cartes en mode mobile/tablette */
+            .service-card[data-aos] {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            footer {
+                display: none;
+            }
+        }
+
+        /* Texte de la deuxième section en #444 */
+        .service-card h2 {
+            color: white;
+        }
+
+        .service-card .h2 {
+            color: #444;
+        }
+
+
+    </style>
+</head>
+<body class="relative bg-gray-900 text-white">
+    <div id="particles-js"></div>
+
+      <!-- Bottom Navbar for Mobile -->
+  <div id="pied" class="bottom-navbar  fixed bg-gradient-to-l py-3 from-sky-700 to-blue-900 shadow-2xl ">
+    <a href="./index.html" class="text-xl hover:bg-cyan-500 "><i class="fas fa-home"></i></a>
+    <a href="./service.html" class="text-xl hover:bg-cyan-500"><i class="fas fa-cogs"></i></a>
+    <a href="#" class="text-xl hover:bg-cyan-500"><i class="fas fa-info-circle"></i></a>
+    <a href="#" class="text-xl hover:bg-cyan-500"><i class="fas fa-phone-alt"></i></a>
+  </div>
+
+    <!-- Header avec logo et navigation -->
+    <div class="header">
+        <img src="CRH.png" alt="Logo CRH Madagascar">
+        <div class="nav-links">
+            <a href="./index.html" class="text-white">Accueil</a>
+            <a href="#" class="text-white">Services</a>
+            <a href="#" class="text-white">À propos</a>
+            <a href="#" class="text-white">Contact</a>
+        </div>
+    </div>
+
+    <div class="container mx-auto py-10 text-center">
+        <h1 class="text-4xl font-bold mb-8">Nos Services</h1>
+        <p class="text-lg mb-4 txt">Administration du personnel</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="L’embauche" data-aos="fade-up">
+                <h2 class="text-xl font-semibold">L’embauche</h2>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Gestion des conflits"  data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-xl font-semibold">Gestion des conflits</h2>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Résiliation du contrat" data-aos="fade-up" data-aos-delay="400">
+                <h2 class="text-xl font-semibold">Résiliation du contrat</h2>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Gestion de la paie" data-aos="fade-up" data-aos-delay="600">
+                <h2 class="text-xl font-semibold">Gestion de la paie</h2>
+            </div>
+            <!-- <div class="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Recrutement"  data-aos="fade-up" data-aos-delay="800">
+                <h2 class="text-xl font-semibold">Recrutement</h2>
+            </div> -->
+        </div>
+        <br><br><br><br>
+    </div>
+
+    <!-- Ligne animée entre les sections -->
+    <div class="line-animate"></div>
+
+    <!-- Deuxième section avec particles bleu et fond blanc -->
+    <div id="particles-js-2"></div>
+
+    <div class="container mx-auto my-10 py-10 text-center">
+        <!-- <h1 class="text-4xl font-bold mb-8">Autres Services</h1> -->
+        <p class="text-lg mb-4" style="color: #444;">Gestion des Ressources Humaines </p>
+
+        <div class="grid grid-cols-1 my-10 md:grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Recrutement" data-aos="flip-up">
+                <h2 class="text-xl font-semibold h2">Recrutement</h2>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Evaluation de performance" data-aos="flip-up" data-aos-delay="200">
+                <h2 class="text-xl font-semibold h2">L’évaluation de performance </h2>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Gestion Prévisionnel " data-aos="flip-up" data-aos-delay="400">
+                <h2 class="text-xl font-semibold h2">La Gestion Prévisionnel des Emplois et des Compétences </h2>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg cursor-pointer service-card" data-title="Bilan social" data-aos="flip-up" data-aos-delay="600">
+                <h2 class="text-xl font-semibold h2">Le bilan social </h2>
+            </div>
+        </div>
+    </div>
+
+  
+
+<br class="br"><br class="br"><br class="br"><br class="br"><br class="br"><br class="br"><br class="br">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dzK08F15fD+/MB9P4M1c20/Onn8/BP8b6f8rq4Dg5z0FfW5Lftc0C3aCHN9odCIx2iDLmGRIc5ATc7QsUGHDw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <footer class="bg-gray-800 text-white py-6" data-aos="fade-up" >
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <p class="mb-2">Contactez-nous</p>
+            <p class="mb-2">📧 Email : <a href="mailto:crhmadagascar@gmail.com" class="underline">crhmadagascar@gmail.com</a></p>
+            <p>📍 Téléphne : +261348614652</p>
+            <!-- <p>📍 Localisation : Madagascar</p> -->
+        </div>
+        <div class="text-center md:text-right">
+            <p class="mb-2">Suivez-nous :</p>
+            <a href="https://facebook.com" class="mr-2 hover:text-blue-500 transition duration-300"><i class="fab fa-facebook-square"></i> Facebook</a>
+            <a href="https://linkedin.com" class="hover:text-blue-500 transition duration-300"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+    </div>
+    <div class="text-center mt-6 text-sm">
+        <p>&copy; 2025 CRH Madagascar. Tous droits réservés.</p>
+        <p>Développé par Rajao</p>
+    </div>
+</footer>
+
+    <!-- Popup modale -->
+    <div class="popup" id="popup">
+        <span class="popup-close" id="close-popup">X</span>
+        <div class="popup-header" id="popup-title"></div>
+        <div class="popup-content" id="popup-content"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": { "value": 80 },
+                    "size": { "value": 3 },
+                    "move": { "speed": 2 },
+                    "line_linked": { "enable": true }
+                },
+                "interactivity": {
+                    "events": {
+                        "onhover": { "enable": true, "mode": "repulse" }
+                    }
+                }
+            });
+
+            // Ajout des particules pour la deuxième section
+            particlesJS('particles-js-2', {
+                "particles": {
+                    "number": { "value": 80 },
+                    "size": { "value": 3 },
+                    "move": { "speed": 2 },
+                    "line_linked": { "enable": true, "color": "#1E40AF" }
+                },
+                "interactivity": {
+                    "events": {
+                        "onhover": { "enable": true, "mode": "repulse" }
+                    }
+                }
+            });
+
+            AOS.init(); 
+        });
+
+         $(document).ready(function() {
+    $('.service-card').click(function() {
+        let title = $(this).data('title');
+        let content = '';
+
+        if (title === "L’embauche") {
+            content = `
+                - Dès l’embauche d’un nouvel recru, la rédaction d’un contrat de travail est nécessaire,<br> <br>
+                - Il assurera le suivi de ces contrats avec période d’essai ou les dates stipulées dans un contrat à durée déterminée, ainsi que les avenants au contrat, y compris la détermination des qualifications et groupe professionnel que l’employé possèdera suivant les poste-t qu’elle ou il occupera.<br> <br>
+                - L’affiliation au sein des organismes sociaux c'est-à-dire AMIT, OSIE, CNaPs… selon le cas dans chaque société.
+            `;
+        } else if (title === "Gestion des conflits") {
+            content = `
+
+               - En cas de conflits, et après constatations des faits et demande d’explication CRH Madagascar pourra également aider dans la gestion des sanctions et les gestions de conflits individuels ou collectifs en respectant la loi en vigueur. <br> <br>
+
+                -Les membres du cabinet sont généralement des personnes expérimentées sur le domaine RH donc le cabinet pourra être une force de proposition dans l’établissement d’un règlement intérieur qui, ayant toujours l’objet de l’intérêt de la société. 
+            `;
+        } else if (title === "Résiliation du contrat") {
+            content = `
+               - Lors d’un congédiement, CRH Madagascar mènera à bien les procédures de licenciement selon l’article 22 du code de travail ainsi que l’établissement d’un certificat de travail. <br> <br>
+
+- Le cabinet accompagnera également les sociétés, les ONG, ou les projets dans le suivi des préavis que l’employé devrait effectuer lors d’un congédiement, démission et les ruptures à l’amiable seront soutenues par la proposition de l’établissement à l’aide d’un protocole d’accord avec l’employé. 
+
+            `;
+        } else if (title === "Gestion de la paie") {
+            content = "La paie est l’une des motivations du capital humain dans une société, ainsi dans le but de faire 0 erreur et suivant les législations en vigueur avec un outil RH adapté à la paie malagasy, le cabinet assurera le traitement de tout ce qui concerne la paie et l’établissement de toutes les déclarations fiscales et sociales y afférentes. ";
+        } else if (title === "Recrutement") {
+            content = `- La détermination des candidats adéquats  pour un poste jugé utile à  créer, à maintenir ou à transformer est l’une des spécialités du cabinet, CRH Madagascar accompagne donc les sociétés dans les processus de recrutement afin d’inciter les personnes compétentes à poser leurs candidatures et assurer le succès du processus de sélection en réduisant le nombre des candidats sous qualifiés et sur qualifiés. <br> <br>
+- Après recrutement ou  dans la phase des mis à jours, CRH Madagascar peut aider dans l’établissement d’une fiche de poste et les termes de références avec les chefs hiérarchiques. 
+`;
+        }else if(title==="Evaluation de performance"){
+            content = `
+               - L’évaluation de performance ainsi que la mobilité interne qui ne séparera jamais de la gestion des carrières pouvant assuré la pérennité et la croissance de l’entreprise est l’activité que CRH Madagascar pourra aussi fournir.  <br> <br>
+- Pour réduire le coût de recrutement, CRH peut participer  dans l’établissement d’un plan de formation où même donner des formations de base aux assistants RH ou les accompagner dans leurs taches quotidiennes.
+  `;
+        }else if(title==="Gestion Prévisionnel "){
+            content = `
+            Le cabinet pourra également aider dans la GPEC ou Gestion Prévisionnel des Emplois et des Compétences en suivant les politiques et les plans d’actions cohérentes. 
+  `;
+        }else if(title==="Bilan social"){
+            content = `
+    Ce domaine aidera les sociétés, les ONG et les projets à avoir des états du capital humain, des postes occupées et d’autres afin d’analyser les déséquilibres, CRH Madagascar sera donc le support dans l’établissement d’un bilan social si nécessaire à la société. 
+  `;
+        }
+
+
+        // Mettre à jour le contenu du popup
+        $('#popup-title').text(title);
+        $('#popup-content').html(content);  // Utilise .html() pour permettre le HTML (sauts de ligne avec <br>)
+        $('#popup').fadeIn();
+    });
+
+    // Fermer le popup
+    $('#close-popup').click(function() {
+        $('#popup').fadeOut();
+    });
+});
+    </script>
+</body>
+</html>

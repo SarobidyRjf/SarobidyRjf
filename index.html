@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="../dist/output.css"> -->
+    <link href="font-awesome/css/all.min.css" rel="stylesheet">
+    <!-- Ajout des liens CDN AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Ajout des liens CDN Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Ajout Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- Ajout Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+
+
+ 
+
+  <style>
+
+  *{
+    box-sizing: border-box;
+  }
+    /* Animation for underline on hover */
+    .link-underline {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .link-underline::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .link-underline:hover::after {
+      transform: scaleX(1);
+    }
+
+    .logo {
+      transition: transform 1s ease 0.5s;
+    }
+
+    .logo:hover {
+      transform: scale(1.5);
+    }
+
+    .divBleu:hover {
+      transform: scale(0.9);
+    }
+
+    .carousel {
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      flex: 0 0 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      transition: background-color 0.3s ease;
+    }
+
+    nav.scrolled {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Navbar for mobile */
+    .bottom-navbar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e40af;
+      z-index: 50;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .bottom-navbar a {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      color: white;
+      font-size: 24px;
+    }
+
+   /* .bottom-navbar a:hover {
+      background-color: #2563eb;
+    }*/
+
+    /* Hide desktop navbar on mobile */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .bottom-navbar {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  </style>
+  <style>
+  /* Text Shadow for H1 */
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Animation for typing effect (machine-like) */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Apply typing animation to h1 */
+  .h1 {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 4px solid #fff; /* Simulates the cursor */
+    animation: typing 4s steps(30) 0.3s 0.5 normal both;
+  }
+
+  /* Apply fade-in effect to p */
+  .p {
+    opacity: 0;
+    animation: fadeIn 2s 3s forwards;
+  }
+
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .mobile-header {
+    display: none;
+  }
+
+    .body2 {
+      position: absolute;
+    background-color: white;
+    width: 100%;
+/*    margin-top: 60vh;*/
+    box-sizing: border-box;
+    top: 430px;
+
+  }
+
+  @media (max-width:767px){
+    .body2 {
+    top: 50px;
+}
+    .carousel {
+      display: none;
+    }
+
+    .mobile-header{
+      display: flex;
+      height: 10vh;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.9;
+    }
+
+    #mh-h1 {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 4px solid #fff; 
+    animation: typing 3s steps(70) 0.3s 2 normal both;
+    font-size: 95%;
+  }
+
+ #pied {
+  width: 100%;
+ }
+  footer {
+    display:none;
+  }
+
+
+
+  }
+
+  .carousel-item {
+    position: fixed;
+    width: 100%;
+    z-index: -10;
+    
+  }
+
+  /* Animation de vague */
+  .wave-container {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+  }
+
+ 
+
+ 
+ 
+
+  /* Amélioration du carousel */
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-item {
+    flex: 0 0 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  /* Animations pour le défilement */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animation pour les slides du carousel */
+  .slide-effect {
+    animation: slideEffect 0.5s ease-out;
+  }
+
+  @keyframes slideEffect {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Style WhatsApp-like pour mobile */
+  @media (max-width: 768px) {
+    .mobile-image-section {
+      display: block;
+      margin: 2rem 0;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    section {
+      border-radius: 1rem;
+      margin: 1rem;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  /* Styles pour Swiper */
+  .swiper {
+    width: 100%;
+    height: 75vh;
+  }
+
+  .swiper-slide {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .swiper-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .swiper-slide h1,
+  .swiper-slide p {
+    position: relative;
+    z-index: 2;
+    color: white;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    transition: all 0.3s ease;
+  }
+
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 20px !important;
+  }
+
+  .swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.7;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #1e40af !important;
+    opacity: 1;
+  }
+
+  /* Styles pour les animations au survol */
+  .hover-animate {
+    transition: all 0.3s ease;
+  }
+
+  .hover-animate:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .hover-pulse:hover {
+    animation: pulse 1s;
+  }
+
+  .hover-bounce:hover {
+    animation: bounce 1s;
+  }
+
+  .hover-shake:hover {
+    animation: headShake 1s;
+  }
+
+  /* Style pour le conteneur avec particules */
+  .particles-container {
+    position: relative;
+    background: #F1F1F1;
+    overflow: hidden;
+  }
+
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .particles-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer div{
+    z-index: 2;
+  }
+
+</style>
+</head>
+<body class="bg-gray-100">
+
+  <div  class="mobile-header  bg-gradient-to-r from-white to-gray-500  shadow-lg"> 
+      <div class="mh-h1"> 
+          <h1 id="mh-h1" class="text-blue-900"> <pre >CRH Madagascar </pre> </h1>
+      </div>
+  </div>
+
+  <!-- Initialisation de AOS -->
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+  </script>
+
+  <!-- Carousel -->
+  <div class="w-full relative shadow-2xl shadow-cyan-500/50" data-aos="fade-down">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide bg-gradient-to-r from-sky-700 to-blue-900" style="background-image: url(img/un.jpg);">
+          <h1 class="text-2xl md:text-2xl lg:text-4xl font-bold mt-5 mb-4 text-center text-shadow h1">Bienvenue chez CRH Madagascar</h1>
+          <p class="p text-xl md:text-1xl mt-2 mb-8 text-center">Votre partenaire en gestion des ressources humaines</p>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide bg-gradient-to-r from-sky-700 to-blue-900" style="background-image: url(img/deux.jpg);">
+          <h1 class="text-2xl md:text-2xl lg:text-4xl font-bold mt-5 mb-4 text-center text-shadow">Excellence en RH</h1>
+          <p class="text-xl md:text-2xl mt-2 mb-8 text-center">Des solutions innovantes pour votre succès</p>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide bg-gradient-to-r from-sky-700 to-blue-900" style="background-image: url(img/trois.jpg);">
+          <h1 class="text-2xl md:text-2xl lg:text-4xl font-bold mt-5 mb-4 text-center text-shadow">Solutions RH sur mesure</h1>
+          <p class="text-xl md:text-2xl mt-2 mb-8 text-center">Expertise en ressources humaines pour optimiser votre capital humain</p>
+        </div>
+      </div>
+      
+      <!-- Add Navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-1/2 transform -translate-x-1/2 w-11/12 rounded-lg bg-gradient-to-r from-sky-700 to-blue-900 text-white shadow-2xl shadow-cyan-500/50 border-2 border-white-300 z-50 mt-7">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <img class="h-10 logo" src="CRH.png" alt="Logo">
+        </div>
+
+        <!-- Menu (hidden on mobile) -->
+        <div class="hidden md:flex space-x-4">
+          <a href="#" class="link-underline text-lg">Accueil</a>
+          <a href="./service.html" class="link-underline text-lg">Services</a>
+          <a href="#" class="link-underline text-lg">À propos</a>
+          <a href="#" class="link-underline text-lg">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Bottom Navbar for Mobile -->
+  <div id="pied" class="bottom-navbar  fixed bg-gradient-to-l py-3 from-sky-700 to-blue-900 shadow-2xl ">
+    <a href="#" class="text-xl hover:bg-cyan-500 "><i class="fas fa-home"></i></a>
+    <a href="./service.html" class="text-xl hover:bg-cyan-500"><i class="fas fa-cogs"></i></a>
+    <a href="#" class="text-xl hover:bg-cyan-500"><i class="fas fa-info-circle"></i></a>
+    <a href="#" class="text-xl hover:bg-cyan-500"><i class="fas fa-phone-alt"></i></a>
+  </div>
+<!-- Main Content --> 
+<div class="body2"> 
+  <!-- Container pour les sections avec particules -->
+<div class="particles-container" >
+    <div id="particles-js"></div>
+    <div class="particles-content">
+<main class="container mx-auto px-6 py-12">
+
+
+
+
+   <!-- Presentation Section -->
+<section class="mb-12 text-center py-12 bg-gray-50 hover-animate" data-aos="fade-up">
+    <h2 class="text-4xl font-extrabold text-gray-900 mb-6">Présentation Générale</h2>
+    <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+        CRH Madagascar, fondé à <strong class="text-blue-600">Madagascar</strong>, est un cabinet spécialisé dans les solutions personnalisées pour les entreprises, ONG, projets, et étudiants dans le domaine des ressources humaines.
+    </p>
+</section>
+
+<!-- Après la section "Présentation Générale" -->
+<div class="mobile-image-section hidden md:hidden">
+  <div class="h-64 bg-cover bg-center relative" style="background-image: url('img/un.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <h1 class="text-white text-2xl font-bold text-center slide-in">Bienvenue chez CRH Madagascar</h1>
+    </div>
+  </div>
+</div>
+
+<!-- Competencies Section -->
+<section class="mb-12 p-12  bg-gradient-to-r from-sky-700 to-blue-900 text-white flex flex-col items-center justify-center p-6 border-gray-200 rounded-lg hover-bounce" data-aos="fade-right">
+    <h2 class="text-4xl font-extrabold  mb-12 text-center">Nos Domaines de Compétence</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="p-6 border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition duration-300 divBleu" data-aos="zoom-in" data-aos-delay="200">
+            <h3 class="text-2xl font-bold  mb-4">Administration du Personnel</h3>
+            <ul class="list-disc list-inside  space-y-2">
+                <li>Embauche : Rédaction et suivi des contrats de travail.</li>
+                <li>Gestion des Conflits : Accompagnement pour les litiges individuels ou collectifs.</li>
+                <li>Résiliation de Contrats : Gestion des licenciements et protocoles d'accord.</li>
+                <li>Gestion de la Paie : Traitement précis et conforme aux législations malgaches.</li>
+            </ul>
+        </div>
+
+        
+         
+        <div class="p-6 border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition duration-300 divBleu" data-aos="zoom-in" data-aos-delay="400">
+            <h3 class="text-2xl font-bold text-red mb-4">Gestion des Ressources Humaines</h3>
+            <ul class="list-disc list-inside text-white space-y-2">
+                <li>Recrutement : Sélection des meilleurs talents adaptés à vos besoins.</li>
+                <li>Évaluation de Performance : Suivi des carrières et plan de formation.</li>
+                <li>GPEC : Stratégies RH sur mesure.</li>
+                <li>Bilan Social : Analyse et optimisation du capital humain.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Après la section "Compétences" -->
+<div class="mobile-image-section hidden md:hidden">
+  <div class="h-64 bg-cover bg-center relative" style="background-image: url('img/deux.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <h1 class="text-white text-2xl font-bold text-center slide-in">Excellence en RH</h1>
+    </div>
+  </div>
+</div>
+
+<!-- Challenges Section -->
+<section class="mb-12 p-12 bg-gray-50 hover-pulse" data-aos="fade-left">
+    <div class="p-8 border rounded-lg shadow-lg text-left hover:shadow-xl transition duration-300" style="border: 1px solid red;">
+        <h2 class="text-4xl font-extrabold text-gray-900 mb-6" data-aos="fade-down">Nos Défis Majeurs</h2>
+        <ul class="list-none text-gray-700 space-y-4">
+            <li class="flex items-center" data-aos="fade-right" data-aos-delay="200">
+                <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
+                Offrir des services fiables et rapides
+            </li>
+            <li class="flex items-center" data-aos="fade-right" data-aos-delay="400">
+                <i class="fas fa-shield-alt text-blue-500 mr-3 text-xl"></i>
+                Assurer la confidentialité absolue
+            </li>
+            <li class="flex items-center" data-aos="fade-right" data-aos-delay="600">
+                <i class="fas fa-chart-line text-red-500 mr-3 text-xl"></i>
+                Réduire les conflits pour améliorer la productivité
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- Container pour les sections avec particules -->
+<!-- <div class="particles-container" >
+    <div id="particles-js"></div> -->
+    <!-- <div class="particles-content"> -->
+      <div class="">
+        <!-- Avantages Section -->
+        <section class="bg-transparent py-16 hover-shake" data-aos="fade-up">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-down">Pourquoi nous choisir ?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center" data-aos="flip-left" data-aos-delay="200">
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Économie</h3>
+                        <p class="text-gray-600">Réduction des coûts RH pour les entreprises</p>
+                    </div>
+                    <div class="text-center" data-aos="flip-left" data-aos-delay="400">
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Confiance</h3>
+                        <p class="text-gray-600">Suppression des litiges et des suspicions nuisibles</p>
+                    </div>
+                    <div class="text-center" data-aos="flip-left" data-aos-delay="600">
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Expertise</h3>
+                        <p class="text-gray-600">Une équipe expérimentée dédiée à votre succès</p>
+                    </div>
+                    <div class="text-center" data-aos="flip-left" data-aos-delay="800">
+                        <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold mb-2">Sur mesure</h3>
+                        <p class="text-gray-600">Solutions adaptées à vos besoins</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+</main>
+
+<!-- Footer -->
+<!-- Intégration de Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dzK08F15fD+/MB9P4M1c20/Onn8/BP8b6f8rq4Dg5z0FfW5Lftc0C3aCHN9odCIx2iDLmGRIc5ATc7QsUGHDw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<footer class="bg-gray-800 text-white py-6" data-aos="fade-up" >
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <p class="mb-2">Contactez-nous</p>
+            <p class="mb-2">📧 Email : <a href="mailto:crhmadagascar@gmail.com" class="underline">crhmadagascar@gmail.com</a></p>
+            <p>📍 Téléphne : +261348614652</p>
+            <!-- <p>📍 Localisation : Madagascar</p> -->
+        </div>
+        <div class="text-center md:text-right">
+            <p class="mb-2">Suivez-nous :</p>
+            <a href="https://facebook.com" class="mr-2 hover:text-blue-500 transition duration-300"><i class="fab fa-facebook-square"></i> Facebook</a>
+            <a href="https://linkedin.com" class="hover:text-blue-500 transition duration-300"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+    </div>
+    <div class="text-center mt-6 text-sm">
+        <p>&copy; 2025 CRH Madagascar. Tous droits réservés.</p>
+        <p>Développé par Rajao</p>
+    </div>
+</footer>
+</div>
+
+
+
+
+  <script>
+    // Initialisation de AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Initialisation de Swiper
+    var swiper = new Swiper(".mySwiper", {
+      effect: "fade", // effet de transition en fondu
+      loop: true, // boucle infinie
+      autoplay: {
+        delay: 5000, // délai de 5 secondes entre les slides
+        disableOnInteraction: false, // continue l'autoplay même après interaction
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      speed: 1000, // vitesse de transition
+    });
+
+    // Configuration et initialisation de Particles.js
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#0000FF"
+        },
+        shape: {
+          type: "circle"
+        },
+        opacity: {
+          value: 0.5,
+          random: false
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 6,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          resize: true
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>
